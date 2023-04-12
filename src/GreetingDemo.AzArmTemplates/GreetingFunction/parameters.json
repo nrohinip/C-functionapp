@@ -9,7 +9,7 @@
             "value": "greetingservice"
         },
         "location": {
-            "value": "useast"
+            "value": "southindia"
         },
         "hostingPlanName": {
             "value": "ASP-gitactionsdeployfuncdemo-8638"
