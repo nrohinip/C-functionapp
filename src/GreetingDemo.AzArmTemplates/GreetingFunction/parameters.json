@@ -9,13 +9,13 @@
             "value": "greetingservice"
         },
         "location": {
-            "value": "Australia Southeast"
+            "value": "useast"
         },
         "hostingPlanName": {
             "value": "ASP-gitactionsdeployfuncdemo-8638"
         },
         "serverFarmResourceGroup": {
-            "value": "git-actions-deploy-func-demo"
+            "value": "secrets"
         },
         "alwaysOn": {
             "value": false
