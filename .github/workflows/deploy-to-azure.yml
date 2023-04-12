@@ -6,7 +6,7 @@ on:
 
 env:
   DOTNET_VERSION: '3.1.x'
-  AZURE_RESOURCE_GROUP_NAME: 'functionapp'
+  AZURE_RESOURCE_GROUP_NAME: 'secrets'
   AZURE_FUNCTIONAPP_NAME: 'rohini-testing'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '${{ github.workspace }}/src/GreetingDemo.Function'
   BUILD_OUTPUT_PATH: '${{ github.workspace }}/build-artifacts'
