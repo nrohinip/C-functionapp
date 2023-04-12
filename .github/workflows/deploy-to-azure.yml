@@ -6,8 +6,8 @@ on:
 
 env:
   DOTNET_VERSION: '3.1.x'
-  AZURE_RESOURCE_GROUP_NAME: 'secrets'
-  AZURE_FUNCTIONAPP_NAME: 'greetingservice'
+  AZURE_RESOURCE_GROUP_NAME: 'functionapp'
+  AZURE_FUNCTIONAPP_NAME: 'rohini-testing'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '${{ github.workspace }}/src/GreetingDemo.Function'
   BUILD_OUTPUT_PATH: '${{ github.workspace }}/build-artifacts'
   BUILD_PACKAGE_NAME: 'az-func.zip'
@@ -17,39 +17,8 @@ defaults:
     shell: bash
 
 jobs:
-    deploy-az-infrastructure:
-      runs-on: ubuntu-latest
-      steps:
-
-       # Authentication
-       # Set up the following secrets in your repository: AZURE_CREDENTIALS
-       # For details see https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure
-       - name: 'Login to Azure'
-         uses: azure/login@v1
-         with:
-           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-       # Makes source code is accessible via $github.workspace
-       - name: 'Checking out source code ...'
-         uses: actions/checkout@v2
- 
-       # Deploy Azure function app
-       # Note: Using Azure CLI for deployment as it provides more verbose error messages
-       - name: 'Creating Azure Function App'
-         uses: azure/CLI@v1
-         with:
-           inlineScript: |
-             az deployment group create \
-             --name az-func-workflow-deploy \
-             --resource-group ${{ env.AZURE_RESOURCE_GROUP_NAME }} \
-             --template-file $GITHUB_WORKSPACE/src/GreetingDemo.AzArmTemplates/GreetingFunction/template.json \
-             --mode incremental \
-             --parameters $GITHUB_WORKSPACE/src/GreetingDemo.AzArmTemplates/GreetingFunction/parameters.json \
- 
-    ############################################################################
 
     build-az-function:
-      needs: [deploy-az-infrastructure]
       runs-on: ubuntu-latest
       steps:
       
